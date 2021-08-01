@@ -15,6 +15,12 @@ class ViewController: UIViewController {
         
         updateColor()
         
+        colorView.layer.borderWidth = 5
+        colorView.layer.cornerRadius = 20
+        colorView.layer.borderColor = UIColor.black.cgColor
+        
+        updateControls()
+        
     }
 
     @IBOutlet weak var colorView: UIView!
@@ -29,6 +35,7 @@ class ViewController: UIViewController {
     
     @IBAction func switchChanged(_ sender: UISwitch) {
         updateColor()
+        updateControls()
     }
     
     func updateColor() {
@@ -51,7 +58,28 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sliderChanged(_ sender: Any) {
+        updateColor()
     }
     
+    @IBAction func reset(_ sender: Any) {
+        
+        redSwitch.isOn = false
+        greenSwitch.isOn = false
+        blueSwitch.isOn = false
+        
+        redSlider.value = 1
+        greenSlider.value = 1
+        blueSlider.value = 1
+        
+        updateColor()
+        updateControls()
+        
+    }
+    
+    func updateControls() {
+        redSlider.isEnabled = redSwitch.isOn
+        greenSlider.isEnabled = greenSwitch.isOn
+        blueSlider.isEnabled = blueSwitch.isOn
+    }
 }
 
